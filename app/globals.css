@@ -16,6 +16,10 @@
   --amer-dark: var(--pdm-primary-dark);
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Noto Sans KR', sans-serif;
   background-color: #f4f6f9;
