@@ -150,7 +150,7 @@ export default function BulkApproval() {
           <AgGridReact
             rowData={rowData}
             columnDefs={colDefs}
-            loading={loading}
+            // loading={loading}
             rowSelection="multiple"
             defaultColDef={{ resizable: true, sortable: true, suppressMovable: true }}
             rowHeight={28} headerHeight={30}

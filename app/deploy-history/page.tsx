@@ -148,7 +148,8 @@ export default function DeployHistory() {
           </div>
           <div className="ag-theme-alpine" style={{ flex: 1 }}>
             <AgGridReact
-              rowData={styles} columnDefs={styleCols} loading={loading}
+              rowData={styles} columnDefs={styleCols}
+              // loading={loading}
               rowSelection="single" rowHeight={26} headerHeight={28}
               defaultColDef={{ resizable: true, suppressMovable: true }}
               onRowClicked={e => { setSelectedStyle(e.data); setSelectedHistory(null); }}

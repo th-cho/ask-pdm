@@ -157,7 +157,7 @@ export default function ProductRequest() {
                 { field: 'status',    headerName: '상태',       width: 80,
                   cellRenderer: (p: any) => <span style={{ color: STATUS_COLOR[p.value], fontWeight: 600, fontSize: 11 }}>{p.value}</span> },
               ]}
-              loading={loading}
+              // loading={loading}
               rowSelection="single"
               defaultColDef={{ resizable: true, suppressMovable: true }}
               rowHeight={26} headerHeight={28}

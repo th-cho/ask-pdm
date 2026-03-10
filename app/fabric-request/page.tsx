@@ -153,9 +153,11 @@ export default function FabricRequest() {
           <AgGridReact
             rowData={rowData}
             columnDefs={listCols}
-            loading={loading}
+            // loading={loading}
             rowSelection="single"
-            defaultColDef={{ resizable: true, sortable: true, suppressMovable: true, fontSize: 12 }}
+            defaultColDef={{ resizable: true, sortable: true, suppressMovable: true
+              // , fontSize: 12
+                      }}
             rowHeight={28} headerHeight={30}
             onRowClicked={e => setSelected(e.data)}
             getRowStyle={p => p.data?.id === selected?.id ? { background: '#dbeafe' } : undefined}
