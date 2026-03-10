@@ -583,3 +583,152 @@ header {
   line-height: 1.8;
 }
 .pdm-help-box .highlight { color: #dc3545; font-weight: 600; }
+
+/* ── Phase 6/7 신규 페이지 공통 컴포넌트 ── */
+
+/* 툴바 */
+.pdm-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+.pdm-page-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-right: 8px;
+}
+.pdm-page-code {
+  font-size: 11px;
+  font-weight: 400;
+  color: #94a3b8;
+  margin-left: 4px;
+}
+.pdm-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+/* 버튼 공통 */
+.pdm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid #cdd5e0;
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+.pdm-btn kbd {
+  font-family: inherit;
+  font-size: 10px;
+  background: #334155;
+  color: #fff;
+  border-radius: 3px;
+  padding: 0 4px;
+  margin-left: 2px;
+}
+.pdm-btn:hover { background: #f0f4fa; border-color: var(--pdm-primary); color: var(--pdm-primary); }
+.pdm-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* 버튼 컬러 변형 */
+.pdm-btn-primary  { background: var(--pdm-primary); border-color: var(--pdm-primary); color: #fff; }
+.pdm-btn-primary:hover  { background: var(--pdm-primary-dark); border-color: var(--pdm-primary-dark); color: #fff; }
+.pdm-btn-success  { background: #16a34a; border-color: #16a34a; color: #fff; }
+.pdm-btn-success:hover  { background: #15803d; border-color: #15803d; color: #fff; }
+.pdm-btn-danger   { background: #dc2626; border-color: #dc2626; color: #fff; }
+.pdm-btn-danger:hover   { background: #b91c1c; border-color: #b91c1c; color: #fff; }
+.pdm-btn-info     { background: #0891b2; border-color: #0891b2; color: #fff; }
+.pdm-btn-info:hover     { background: #0e7490; border-color: #0e7490; color: #fff; }
+.pdm-btn-default  { background: #fff; border-color: #cdd5e0; color: #374151; }
+.pdm-btn-default:hover  { background: #f1f5f9; border-color: #94a3b8; color: #1e293b; }
+
+/* 필터바 (Phase 6/7 — label + input/select 패턴) */
+.pdm-filter-bar label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+.pdm-filter-bar input,
+.pdm-filter-bar select {
+  height: 26px;
+  font-size: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 0 6px;
+  background: #fff;
+  color: #334155;
+  outline: none;
+}
+.pdm-filter-bar input:focus,
+.pdm-filter-bar select:focus {
+  border-color: var(--pdm-primary);
+  box-shadow: 0 0 0 2px rgba(26,92,184,0.12);
+}
+
+/* 상세 섹션 */
+.pdm-detail-section {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.pdm-section-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a5cb8;
+  margin-bottom: 8px;
+}
+.pdm-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+/* pdm-form-row는 기존 정의 재사용, 여기서는 label/input 스타일만 보강 */
+.pdm-detail-section .pdm-form-row label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  min-width: 64px;
+}
+.pdm-detail-section .pdm-form-row input,
+.pdm-detail-section .pdm-form-row select {
+  flex: 1;
+  height: 24px;
+  font-size: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px;
+  padding: 0 6px;
+  background: #f8fafc;
+  color: #334155;
+  min-width: 60px;
+}
+.pdm-detail-section .pdm-form-row input:not([readonly]):focus,
+.pdm-detail-section .pdm-form-row select:focus {
+  border-color: var(--pdm-primary);
+  background: #fff;
+  outline: none;
+}
+.pdm-detail-section .pdm-form-row input[readonly] {
+  background: #f1f5f9;
+  color: #64748b;
+}

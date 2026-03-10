@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { LucideIcon, ChevronRight, Menu as MenuIcon, Settings, Code, LayoutGrid, Users, ShieldCheck, FileSpreadsheet, Printer, Timer, Database, Key, Server, Building2, Layers, Shirt, Copy, Scissors, FileText, ClipboardList } from 'lucide-react';
+import { LucideIcon, ChevronRight, Menu as MenuIcon, Settings, Code, LayoutGrid, Users, ShieldCheck, FileSpreadsheet, Printer, Timer, Database, Key, Server, Building2, Layers, Shirt, Copy, Scissors, FileText, ClipboardList, ShoppingBag, CheckSquare, GitBranch, Bell, History, BarChart2, RefreshCw, Ruler, Send, Package } from 'lucide-react';
 import { useTabContext } from '@/contexts/TabContext';
 
 interface NavNode {
@@ -124,14 +124,53 @@ const NAV_TREE: NavNode[] = [
   {
     id: 'request',
     label: '의뢰관리',
-    icon: Database,
-    children: [],
+    icon: Send,
+    children: [
+      {
+        id: 'request_order',
+        label: '발주의뢰',
+        icon: Package,
+        children: [
+          { id: 'fabric-request',  label: '원단구매의뢰',  path: '/fabric-request',  icon: ShoppingBag },
+          { id: 'product-request', label: '상품사입의뢰',  path: '/product-request', icon: ShoppingBag },
+        ],
+      },
+      {
+        id: 'request_approval',
+        label: '결재/알림',
+        icon: CheckSquare,
+        children: [
+          { id: 'bulk-approval',  label: '일괄결재처리', path: '/bulk-approval',  icon: CheckSquare },
+          { id: 'approval-line',  label: '결재라인관리', path: '/approval-line',  icon: GitBranch   },
+          { id: 'notify-setting', label: '알림발송설정', path: '/notify-setting', icon: Bell        },
+        ],
+      },
+    ],
   },
   {
     id: 'status',
     label: '현황관리',
-    icon: LayoutGrid,
-    children: [],
+    icon: BarChart2,
+    children: [
+      {
+        id: 'status_doc',
+        label: '문서현황',
+        icon: FileText,
+        children: [
+          { id: 'deploy-history',  label: '배포이력현황',     path: '/deploy-history',  icon: History    },
+          { id: 'material-status', label: '요적현황',         path: '/material-status', icon: BarChart2  },
+          { id: 'material-change', label: '원부자재변경현황', path: '/material-change', icon: RefreshCw  },
+        ],
+      },
+      {
+        id: 'status_size',
+        label: '사이즈관리',
+        icon: Ruler,
+        children: [
+          { id: 'size-convert', label: '사이즈단위환산(파일)', path: '/size-convert', icon: Ruler },
+        ],
+      },
+    ],
   },
 ];
 
