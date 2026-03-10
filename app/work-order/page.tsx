@@ -52,6 +52,62 @@ const LABEL_ROWS = [
 
 const FILTER_INIT = { zone: 'OL', brand: 'OL', year: '24', season: '', style: '' };
 
+function MockJacketFront({ styleCode }: { styleCode: string }) {
+  return (
+      <svg viewBox="0 0 200 255" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxHeight: 240 }}>
+        {/* Main body */}
+        <path d="M78 52 L45 62 L52 75 L40 220 L160 220 L148 75 L155 62 L122 52 L100 38Z"
+              fill="#dbeafe" stroke="#334155" strokeWidth="1.3"/>
+        {/* Left sleeve */}
+        <path d="M45 62 L8 190 L20 195 L52 75Z" fill="#bfdbfe" stroke="#334155" strokeWidth="1.3"/>
+        {/* Right sleeve */}
+        <path d="M155 62 L192 190 L180 195 L148 75Z" fill="#bfdbfe" stroke="#334155" strokeWidth="1.3"/>
+        {/* Left collar lapel */}
+        <path d="M100 52 L100 38 L85 35 L78 52Z" fill="#93c5fd" stroke="#334155" strokeWidth="1"/>
+        {/* Right collar lapel */}
+        <path d="M100 52 L100 38 L115 35 L122 52Z" fill="#93c5fd" stroke="#334155" strokeWidth="1"/>
+        {/* Center zip line */}
+        <line x1="100" y1="38" x2="100" y2="220" stroke="#334155" strokeWidth="0.8" strokeDasharray="4 2"/>
+        {/* Chest pocket */}
+        <rect x="55" y="95" width="28" height="16" rx="2" stroke="#334155" strokeWidth="0.9" fill="none"/>
+        {/* Side pockets */}
+        <rect x="43" y="168" width="42" height="18" rx="2" stroke="#334155" strokeWidth="0.9" fill="none"/>
+        <rect x="115" y="168" width="42" height="18" rx="2" stroke="#334155" strokeWidth="0.9" fill="none"/>
+        {/* Hem band */}
+        <line x1="40" y1="208" x2="160" y2="208" stroke="#334155" strokeWidth="0.8"/>
+        {/* Sleeve cuffs */}
+        <line x1="9" y1="188" x2="20" y2="194" stroke="#334155" strokeWidth="1.5"/>
+        <line x1="180" y1="194" x2="191" y2="188" stroke="#334155" strokeWidth="1.5"/>
+        <text x="100" y="232" textAnchor="middle" fontSize="9" fill="#475569" fontFamily="monospace">{styleCode}</text>
+        <text x="100" y="244" textAnchor="middle" fontSize="8" fill="#94a3b8">앞면 (FRONT)</text>
+      </svg>
+  );
+}
+
+function MockJacketBack() {
+  return (
+      <svg viewBox="0 0 200 255" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxHeight: 240 }}>
+        {/* Main body */}
+        <path d="M78 52 L45 62 L52 75 L40 220 L160 220 L148 75 L155 62 L122 52 Q100 60 78 52Z"
+              fill="#dbeafe" stroke="#334155" strokeWidth="1.3"/>
+        {/* Left sleeve */}
+        <path d="M45 62 L8 190 L20 195 L52 75Z" fill="#bfdbfe" stroke="#334155" strokeWidth="1.3"/>
+        {/* Right sleeve */}
+        <path d="M155 62 L192 190 L180 195 L148 75Z" fill="#bfdbfe" stroke="#334155" strokeWidth="1.3"/>
+        {/* Back yoke seam */}
+        <path d="M52 98 Q100 108 148 98" stroke="#334155" strokeWidth="0.9" fill="none"/>
+        {/* Center back seam */}
+        <line x1="100" y1="60" x2="100" y2="220" stroke="#334155" strokeWidth="0.8"/>
+        {/* Hem band */}
+        <line x1="40" y1="208" x2="160" y2="208" stroke="#334155" strokeWidth="0.8"/>
+        {/* Sleeve cuffs */}
+        <line x1="9" y1="188" x2="20" y2="194" stroke="#334155" strokeWidth="1.5"/>
+        <line x1="180" y1="194" x2="191" y2="188" stroke="#334155" strokeWidth="1.5"/>
+        <text x="100" y="244" textAnchor="middle" fontSize="8" fill="#94a3b8">뒷면 (BACK)</text>
+      </svg>
+  );
+}
+
 export default function WorkOrder() {
   const [filter, setFilter]     = useState(FILTER_INIT);
   const [styleList, setStyleList] = useState<StyleRow[]>(MOCK_STYLES);
@@ -79,7 +135,7 @@ export default function WorkOrder() {
   const handleInit   = useCallback(() => { setFilter(FILTER_INIT); setSelStyle(null); }, []);
 
   const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement>) =>
-    setFilter(f => ({ ...f, [k]: e.target.value }));
+      setFilter(f => ({ ...f, [k]: e.target.value }));
 
   const styleCols = useMemo<ColDef[]>(() => [
     { field: 'styleCode', headerName: '스타일코드', flex: 1 },
@@ -123,250 +179,257 @@ export default function WorkOrder() {
   }));
 
   return (
-    <div className="pdm-page">
-      <div className="pdm-title-bar">
-        <h5 className="pdm-title">작업지시서 (DCA010)</h5>
-        <div className="pdm-actions">
-          <button className="btn-pdm-action" onClick={handleSearch} disabled={loading}><Search size={13} /> 조회[F3]</button>
-          <button className="btn-pdm-action" onClick={handleNew}    disabled={loading}><Plus size={13} /> 신규[F4]</button>
-          <button className="btn-pdm-action" onClick={handleSave}   disabled={loading}><Save size={13} /> 저장[F9]</button>
-          <button className="btn-pdm-action danger" onClick={handleDelete} disabled={loading}><Trash2 size={13} /> 삭제[F5]</button>
-          <button className="btn-pdm-action" onClick={handlePrint}  disabled={loading}><Printer size={13} /> 출력[F1]</button>
-          <button className="btn-pdm-action" style={{ fontSize: '11px' }}><FileText size={13} /> 닫기레포</button>
-          <button className="btn-pdm-action" style={{ fontSize: '11px' }}><FileText size={13} /> SRM레포</button>
-          <button className="btn-pdm-action" style={{ fontSize: '11px' }}>결재</button>
-          <button className="btn-pdm-action" style={{ fontSize: '11px' }}>스타일리스트</button>
-          <button className="btn-pdm-action" onClick={handleInit} disabled={loading}><RotateCcw size={13} /> 초기화[F12]</button>
-          <button className="btn-pdm-action" style={{ borderColor: 'transparent' }}><Star size={13} /></button>
-          <button className="btn-pdm-action" style={{ borderColor: 'transparent' }}><Info size={13} /></button>
+      <div className="pdm-page">
+        <div className="pdm-title-bar">
+          <h5 className="pdm-title">작업지시서 (DCA010)</h5>
+          <div className="pdm-actions">
+            <button className="btn-pdm-action" onClick={handleSearch} disabled={loading}><Search size={13} /> 조회[F3]</button>
+            <button className="btn-pdm-action" onClick={handleNew}    disabled={loading}><Plus size={13} /> 신규[F4]</button>
+            <button className="btn-pdm-action" onClick={handleSave}   disabled={loading}><Save size={13} /> 저장[F9]</button>
+            <button className="btn-pdm-action danger" onClick={handleDelete} disabled={loading}><Trash2 size={13} /> 삭제[F5]</button>
+            <button className="btn-pdm-action" onClick={handlePrint}  disabled={loading}><Printer size={13} /> 출력[F1]</button>
+            <button className="btn-pdm-action" style={{ fontSize: '11px' }}><FileText size={13} /> 닫기레포</button>
+            <button className="btn-pdm-action" style={{ fontSize: '11px' }}><FileText size={13} /> SRM레포</button>
+            <button className="btn-pdm-action" style={{ fontSize: '11px' }}>결재</button>
+            <button className="btn-pdm-action" style={{ fontSize: '11px' }}>스타일리스트</button>
+            <button className="btn-pdm-action" onClick={handleInit} disabled={loading}><RotateCcw size={13} /> 초기화[F12]</button>
+            <button className="btn-pdm-action" style={{ borderColor: 'transparent' }}><Star size={13} /></button>
+            <button className="btn-pdm-action" style={{ borderColor: 'transparent' }}><Info size={13} /></button>
+          </div>
         </div>
-      </div>
 
-      <div className="pdm-filter-bar" style={{ flexWrap: 'nowrap', gap: 6 }}>
-        <span className="pdm-filter-label">존브랜드년시</span>
-        <input className="form-control" style={{ width: 55 }} value={filter.zone} onChange={setF('zone')} />
-        <button className="pdm-lookup-btn">?</button>
-        <input className="form-control" style={{ width: 55 }} value={filter.brand} onChange={setF('brand')} placeholder="브랜드" />
-        <button className="pdm-lookup-btn">?</button>
-        <input className="form-control" style={{ width: 38 }} value={filter.year} onChange={setF('year')} />
-        <button className="pdm-lookup-btn">?</button>
-        <input className="form-control" style={{ width: 38 }} value={filter.season} onChange={setF('season')} placeholder="시즌" />
-        <button className="pdm-lookup-btn">?</button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span className="pdm-filter-label">스타일</span>
-          <input className="form-control" style={{ width: 140 }} value={filter.style} onChange={setF('style')} />
+        <div className="pdm-filter-bar" style={{ flexWrap: 'nowrap', gap: 6 }}>
+          <span className="pdm-filter-label">존브랜드년시</span>
+          <input className="form-control" style={{ width: 55 }} value={filter.zone} onChange={setF('zone')} />
           <button className="pdm-lookup-btn">?</button>
+          <input className="form-control" style={{ width: 55 }} value={filter.brand} onChange={setF('brand')} placeholder="브랜드" />
+          <button className="pdm-lookup-btn">?</button>
+          <input className="form-control" style={{ width: 38 }} value={filter.year} onChange={setF('year')} />
+          <button className="pdm-lookup-btn">?</button>
+          <input className="form-control" style={{ width: 38 }} value={filter.season} onChange={setF('season')} placeholder="시즌" />
+          <button className="pdm-lookup-btn">?</button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <span className="pdm-filter-label">스타일</span>
+            <input className="form-control" style={{ width: 140 }} value={filter.style} onChange={setF('style')} />
+            <button className="pdm-lookup-btn">?</button>
+          </div>
+          <button className="btn-pdm-action" onClick={handleSearch} disabled={loading}><Search size={13} /></button>
         </div>
-        <button className="btn-pdm-action" onClick={handleSearch} disabled={loading}><Search size={13} /></button>
-      </div>
 
-      <div className="pdm-content">
-        {/* 좌: 스타일 목록 */}
-        <div className="pdm-panel" style={{ width: '280px' }}>
-          <div className="pdm-panel-header">스타일 목록</div>
-          <div className="pdm-panel-body">
-            <div className="ag-theme-alpine" style={{ height: '100%', width: '100%' }}>
-              <AgGridReact
-                rowData={styleList}
-                columnDefs={styleCols}
-                defaultColDef={defaultColDef}
-                rowSelection="single"
-                onRowSelected={e => { if (e.node.isSelected()) setSelStyle(e.data); }}
-              />
+        <div className="pdm-content">
+          {/* 좌: 스타일 목록 */}
+          <div className="pdm-panel" style={{ width: '280px' }}>
+            <div className="pdm-panel-header">스타일 목록</div>
+            <div className="pdm-panel-body">
+              <div className="ag-theme-alpine" style={{ height: '100%', width: '100%' }}>
+                <AgGridReact
+                    rowData={styleList}
+                    columnDefs={styleCols}
+                    defaultColDef={defaultColDef}
+                    rowSelection="single"
+                    onRowSelected={e => { if (e.node.isSelected()) setSelStyle(e.data); }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="pdm-divider" />
+
+          {/* 우: 탭 패널 */}
+          <div className="pdm-panel" style={{ flex: 1 }}>
+            {/* 탭 헤더 */}
+            <div style={{ display: 'flex', borderBottom: '2px solid #e2e8f0', background: '#f8fafc' }}>
+              {TABS.map((tab, i) => (
+                  <button
+                      key={tab}
+                      onClick={() => setActiveTab(i)}
+                      style={{
+                        padding: '7px 14px', fontSize: '12px', fontWeight: activeTab === i ? 700 : 400,
+                        color: activeTab === i ? '#1a5cb8' : '#6b7280',
+                        background: activeTab === i ? '#fff' : 'transparent',
+                        border: 'none', borderBottom: activeTab === i ? '2px solid #1a5cb8' : 'none',
+                        marginBottom: activeTab === i ? '-2px' : 0, cursor: 'pointer',
+                      }}
+                  >{tab}</button>
+              ))}
+            </div>
+
+            <div className="pdm-panel-body" style={{ padding: 0 }}>
+              {/* 기기정보 탭 */}
+              {activeTab === 0 && (
+                  <div style={{ padding: 14, height: '100%', overflowY: 'auto' }}>
+                    <div className="pdm-form-row">
+                      <span className="pdm-form-label required">스타일코드</span>
+                      <input className="form-control form-control-sm" style={{ width: 200 }} value={selStyle?.styleCode ?? ''} readOnly />
+                      <span className="pdm-form-label" style={{ marginLeft: 16 }}>스타일명</span>
+                      <input className="form-control form-control-sm" style={{ flex: 1 }} value={selStyle?.styleName ?? ''} readOnly />
+                    </div>
+                    <div className="pdm-form-row" style={{ marginTop: 8 }}>
+                      <span className="pdm-form-label">브랜드존</span>
+                      <input className="form-control form-control-sm" style={{ width: 80 }} value={filter.zone} readOnly />
+                      <span className="pdm-form-label" style={{ marginLeft: 16 }}>년도</span>
+                      <input className="form-control form-control-sm" style={{ width: 60 }} value={filter.year} readOnly />
+                      <span className="pdm-form-label" style={{ marginLeft: 16 }}>시즌</span>
+                      <input className="form-control form-control-sm" style={{ width: 60 }} value={filter.season} readOnly />
+                    </div>
+                    <div style={{ marginTop: 14, padding: 12, background: '#f0f9ff', borderRadius: 6, border: '1px solid #bae6fd', fontSize: '12px', color: '#374151' }}>
+                      스타일을 선택하면 기기정보가 표시됩니다.
+                    </div>
+                  </div>
+              )}
+
+              {/* 디자인도면 탭 */}
+              {activeTab === 1 && (
+                  <div style={{ display: 'flex', height: '100%', gap: 0 }}>
+                    <div style={{ flex: 1, padding: 14, borderRight: '1px solid #e2e8f0', overflowY: 'auto' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>디자인도</span>
+                        <button className="btn-pdm-action" style={{ fontSize: '11px' }}><Download size={11} /> 원본 다운로드</button>
+                      </div>
+                      {selStyle ? (
+                          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', padding: '12px 8px' }}>
+                            <MockJacketFront styleCode={selStyle.styleCode} />
+                            <MockJacketBack />
+                          </div>
+                      ) : (
+                          <div style={{ background: '#f8fafc', border: '1px dashed #cbd5e1', borderRadius: 6, minHeight: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', fontSize: '12px' }}>
+                            스타일을 선택하세요
+                          </div>
+                      )}
+                    </div>
+                    <div style={{ width: 320, padding: 14, overflowY: 'auto' }}>
+                      <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: 8, color: '#1e293b' }}>디자인설명</div>
+                      <div className="pdm-form-row">
+                        <span className="pdm-form-label">Approval 일자</span>
+                        <input className="form-control form-control-sm" type="date" style={{ flex: 1 }} value={approvalDate} onChange={e => setApprovalDate(e.target.value)} />
+                      </div>
+                      <div className="pdm-form-row" style={{ alignItems: 'flex-start', marginTop: 6 }}>
+                        <span className="pdm-form-label" style={{ marginTop: 4 }}>내용</span>
+                        <textarea className="form-control form-control-sm" style={{ flex: 1, height: 80, resize: 'none' }} value={approvalNote} onChange={e => setApprovalNote(e.target.value)} />
+                      </div>
+                      <div style={{ marginTop: 14, fontSize: '12px', fontWeight: 700, color: '#1e293b', marginBottom: 6 }}>라벨 및 자수</div>
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 4 }}>
+                        <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
+                      </div>
+                      <div className="ag-theme-alpine" style={{ height: 140 }}>
+                        <AgGridReact rowData={selStyle ? LABEL_ROWS : []} columnDefs={labelCols} defaultColDef={defaultColDef} />
+                      </div>
+                    </div>
+                  </div>
+              )}
+
+              {/* 세탁봉사항 탭 */}
+              {activeTab === 2 && (
+                  <div style={{ display: 'flex', height: '100%', gap: 0 }}>
+                    <div style={{ width: '40%', padding: 14, borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      <div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                          <span style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>세탁방법</span>
+                          <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
+                        </div>
+                        <div className="ag-theme-alpine" style={{ height: 160 }}>
+                          <AgGridReact rowData={selStyle ? [{ category: '구분', desc: '분류명' }] : []}
+                                       columnDefs={[{ field: 'category', headerName: '구분', flex: 1 }, { field: 'desc', headerName: '분류명', flex: 2 }]}
+                                       defaultColDef={defaultColDef} />
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', marginBottom: 6 }}>해인수정</div>
+                        <textarea className="form-control form-control-sm" style={{ height: 140, resize: 'none', fontSize: '11px' }} value={washNote} onChange={e => setWashNote(e.target.value)} />
+                      </div>
+                      <div style={{ display: 'flex', gap: 10 }}>
+                        {['B/T', 'S/O', '메인광단'].map(label => (
+                            <div key={label} style={{ flex: 1, border: '1px solid #e2e8f0', borderRadius: 6, padding: 8 }}>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '11px', fontWeight: 700, color: '#374151' }}>
+                                <span>{label}</span>
+                                <span style={{ color: '#1a5cb8', cursor: 'pointer' }}>확인</span>
+                              </div>
+                              <div className="pdm-form-row" style={{ fontSize: '11px' }}>
+                                <span style={{ minWidth: 40 }}>전반일자</span>
+                                <input className="form-control form-control-sm" type="date" style={{ flex: 1, fontSize: '11px' }} />
+                              </div>
+                              <div className="pdm-form-row" style={{ fontSize: '11px', marginTop: 4 }}>
+                                <span style={{ minWidth: 40 }}>납기자</span>
+                                <input className="form-control form-control-sm" style={{ flex: 1, fontSize: '11px' }} />
+                              </div>
+                              <button className="btn btn-sm w-100 mt-2" style={{ fontSize: '10px', background: '#0891b2', color: '#fff', border: 'none' }}>첨부파일</button>
+                            </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div style={{ flex: 1, padding: 14 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>니트편직</span>
+                        <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
+                      </div>
+                      <div className="ag-theme-alpine" style={{ height: 200 }}>
+                        <AgGridReact rowData={[]}
+                                     columnDefs={[{ field: 'category', headerName: '구분', flex: 1 }, { field: 'detail', headerName: '부위별', flex: 1 }, { field: 'stitchCount', headerName: '침수', width: 80 }, { field: 'rowCount', headerName: '열수', width: 80 }, { field: 'note', headerName: '비고', flex: 1 }]}
+                                     defaultColDef={defaultColDef} />
+                      </div>
+                      <div style={{ marginTop: 12, fontSize: '12px', fontWeight: 700, color: '#1e293b', marginBottom: 6 }}>비고</div>
+                      <textarea className="form-control form-control-sm" style={{ height: 80, resize: 'none' }} />
+                      <div style={{ marginTop: 12 }}>
+                        <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: 6, color: '#1e293b' }}>제품사진</div>
+                        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                          <select className="form-select form-select-sm" style={{ width: 200 }}>
+                            <option>02 - 아이보리</option>
+                          </select>
+                          <span style={{ fontSize: '11px', color: '#6b7280' }}>2.53 MB</span>
+                          <span style={{ fontSize: '11px', color: '#16a34a' }}>✓</span>
+                          <button className="btn btn-sm" style={{ background: '#0891b2', color: '#fff', border: 'none', fontSize: '11px' }}>확인</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              )}
+
+              {/* 원부자재레퍼 탭 */}
+              {activeTab === 3 && (
+                  <div style={{ padding: 0, height: '100%' }}>
+                    <div className="ag-theme-alpine" style={{ height: '100%', width: '100%' }}>
+                      <AgGridReact rowData={selStyle ? FABRIC_ROWS : []} columnDefs={fabricCols} defaultColDef={defaultColDef} />
+                    </div>
+                  </div>
+              )}
+
+              {/* SIZE.SPEC 탭 */}
+              {activeTab === 4 && (
+                  <div style={{ display: 'flex', height: '100%', gap: 0 }}>
+                    <div style={{ width: 160, borderRight: '1px solid #e2e8f0', overflowY: 'auto' }}>
+                      <div style={{ padding: '8px 10px', fontSize: '11px', fontWeight: 700, borderBottom: '1px solid #e2e8f0', background: '#f8fafc', color: '#374151' }}>규격 목록</div>
+                      <div style={{ padding: '6px 10px', display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontWeight: 700, background: '#f0f9ff', borderBottom: '1px solid #e2e8f0', color: '#374151' }}>
+                        <span>대표주어</span><span>규격</span>
+                      </div>
+                      {SIZES.map(s => (
+                          <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 10px', borderBottom: '1px solid #f1f5f9' }}>
+                            <input type="checkbox" checked={!!checkedSizes[`s${s}`]} onChange={e => setCheckedSizes(c => ({ ...c, [`s${s}`]: e.target.checked }))} />
+                            <span style={{ fontSize: '12px', color: '#374151' }}>{s}</span>
+                          </div>
+                      ))}
+                    </div>
+                    <div style={{ flex: 1, overflow: 'auto', padding: 0 }}>
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6, padding: '6px 10px', borderBottom: '1px solid #e2e8f0', background: '#f8fafc' }}>
+                        <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>EXCEL 양식</button>
+                        <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>EXCEL 업로드</button>
+                        <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
+                      </div>
+                      <div className="ag-theme-alpine" style={{ height: 'calc(100% - 38px)' }}>
+                        <AgGridReact rowData={selStyle ? sizeRows : []} columnDefs={sizeCols} defaultColDef={defaultColDef} />
+                      </div>
+                    </div>
+                  </div>
+              )}
+
+              {/* 추가정보 탭 */}
+              {activeTab === 5 && (
+                  <div style={{ padding: 14, height: '100%', overflowY: 'auto' }}>
+                    <div style={{ color: '#9ca3af', fontSize: '12px', textAlign: 'center', marginTop: 40 }}>추가 정보가 없습니다.</div>
+                  </div>
+              )}
             </div>
           </div>
         </div>
-
-        <div className="pdm-divider" />
-
-        {/* 우: 탭 패널 */}
-        <div className="pdm-panel" style={{ flex: 1 }}>
-          {/* 탭 헤더 */}
-          <div style={{ display: 'flex', borderBottom: '2px solid #e2e8f0', background: '#f8fafc' }}>
-            {TABS.map((tab, i) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(i)}
-                style={{
-                  padding: '7px 14px', fontSize: '12px', fontWeight: activeTab === i ? 700 : 400,
-                  color: activeTab === i ? '#1a5cb8' : '#6b7280',
-                  background: activeTab === i ? '#fff' : 'transparent',
-                  border: 'none', borderBottom: activeTab === i ? '2px solid #1a5cb8' : 'none',
-                  marginBottom: activeTab === i ? '-2px' : 0, cursor: 'pointer',
-                }}
-              >{tab}</button>
-            ))}
-          </div>
-
-          <div className="pdm-panel-body" style={{ padding: 0 }}>
-            {/* 기기정보 탭 */}
-            {activeTab === 0 && (
-              <div style={{ padding: 14, height: '100%', overflowY: 'auto' }}>
-                <div className="pdm-form-row">
-                  <span className="pdm-form-label required">스타일코드</span>
-                  <input className="form-control form-control-sm" style={{ width: 200 }} value={selStyle?.styleCode ?? ''} readOnly />
-                  <span className="pdm-form-label" style={{ marginLeft: 16 }}>스타일명</span>
-                  <input className="form-control form-control-sm" style={{ flex: 1 }} value={selStyle?.styleName ?? ''} readOnly />
-                </div>
-                <div className="pdm-form-row" style={{ marginTop: 8 }}>
-                  <span className="pdm-form-label">브랜드존</span>
-                  <input className="form-control form-control-sm" style={{ width: 80 }} value={filter.zone} readOnly />
-                  <span className="pdm-form-label" style={{ marginLeft: 16 }}>년도</span>
-                  <input className="form-control form-control-sm" style={{ width: 60 }} value={filter.year} readOnly />
-                  <span className="pdm-form-label" style={{ marginLeft: 16 }}>시즌</span>
-                  <input className="form-control form-control-sm" style={{ width: 60 }} value={filter.season} readOnly />
-                </div>
-                <div style={{ marginTop: 14, padding: 12, background: '#f0f9ff', borderRadius: 6, border: '1px solid #bae6fd', fontSize: '12px', color: '#374151' }}>
-                  스타일을 선택하면 기기정보가 표시됩니다.
-                </div>
-              </div>
-            )}
-
-            {/* 디자인도면 탭 */}
-            {activeTab === 1 && (
-              <div style={{ display: 'flex', height: '100%', gap: 0 }}>
-                <div style={{ flex: 1, padding: 14, borderRight: '1px solid #e2e8f0', overflowY: 'auto' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>디자인도</span>
-                    <button className="btn-pdm-action" style={{ fontSize: '11px' }}><Download size={11} /> 원본 다운로드</button>
-                  </div>
-                  <div style={{ background: '#f8fafc', border: '1px dashed #cbd5e1', borderRadius: 6, minHeight: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', fontSize: '12px' }}>
-                    {selStyle ? `${selStyle.styleCode} 디자인 도면` : '스타일을 선택하세요'}
-                  </div>
-                </div>
-                <div style={{ width: 260, padding: 14, overflowY: 'auto' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: 8, color: '#1e293b' }}>디자인설명</div>
-                  <div className="pdm-form-row">
-                    <span className="pdm-form-label">Approval 일자</span>
-                    <input className="form-control form-control-sm" type="date" style={{ flex: 1 }} value={approvalDate} onChange={e => setApprovalDate(e.target.value)} />
-                  </div>
-                  <div className="pdm-form-row" style={{ alignItems: 'flex-start', marginTop: 6 }}>
-                    <span className="pdm-form-label" style={{ marginTop: 4 }}>내용</span>
-                    <textarea className="form-control form-control-sm" style={{ flex: 1, height: 80, resize: 'none' }} value={approvalNote} onChange={e => setApprovalNote(e.target.value)} />
-                  </div>
-                  <div style={{ marginTop: 14, fontSize: '12px', fontWeight: 700, color: '#1e293b', marginBottom: 6 }}>라벨 및 자수</div>
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 4 }}>
-                    <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
-                  </div>
-                  <div className="ag-theme-alpine" style={{ height: 140 }}>
-                    <AgGridReact rowData={selStyle ? LABEL_ROWS : []} columnDefs={labelCols} defaultColDef={defaultColDef} />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* 세탁봉사항 탭 */}
-            {activeTab === 2 && (
-              <div style={{ display: 'flex', height: '100%', gap: 0 }}>
-                <div style={{ width: '40%', padding: 14, borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>세탁방법</span>
-                      <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
-                    </div>
-                    <div className="ag-theme-alpine" style={{ height: 160 }}>
-                      <AgGridReact rowData={selStyle ? [{ category: '구분', desc: '분류명' }] : []}
-                        columnDefs={[{ field: 'category', headerName: '구분', flex: 1 }, { field: 'desc', headerName: '분류명', flex: 2 }]}
-                        defaultColDef={defaultColDef} />
-                    </div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', marginBottom: 6 }}>해인수정</div>
-                    <textarea className="form-control form-control-sm" style={{ height: 140, resize: 'none', fontSize: '11px' }} value={washNote} onChange={e => setWashNote(e.target.value)} />
-                  </div>
-                  <div style={{ display: 'flex', gap: 10 }}>
-                    {['B/T', 'S/O', '메인광단'].map(label => (
-                      <div key={label} style={{ flex: 1, border: '1px solid #e2e8f0', borderRadius: 6, padding: 8 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '11px', fontWeight: 700, color: '#374151' }}>
-                          <span>{label}</span>
-                          <span style={{ color: '#1a5cb8', cursor: 'pointer' }}>확인</span>
-                        </div>
-                        <div className="pdm-form-row" style={{ fontSize: '11px' }}>
-                          <span style={{ minWidth: 40 }}>전반일자</span>
-                          <input className="form-control form-control-sm" type="date" style={{ flex: 1, fontSize: '11px' }} />
-                        </div>
-                        <div className="pdm-form-row" style={{ fontSize: '11px', marginTop: 4 }}>
-                          <span style={{ minWidth: 40 }}>납기자</span>
-                          <input className="form-control form-control-sm" style={{ flex: 1, fontSize: '11px' }} />
-                        </div>
-                        <button className="btn btn-sm w-100 mt-2" style={{ fontSize: '10px', background: '#0891b2', color: '#fff', border: 'none' }}>첨부파일</button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div style={{ flex: 1, padding: 14 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b' }}>니트편직</span>
-                    <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
-                  </div>
-                  <div className="ag-theme-alpine" style={{ height: 200 }}>
-                    <AgGridReact rowData={[]}
-                      columnDefs={[{ field: 'category', headerName: '구분', flex: 1 }, { field: 'detail', headerName: '부위별', flex: 1 }, { field: 'stitchCount', headerName: '침수', width: 80 }, { field: 'rowCount', headerName: '열수', width: 80 }, { field: 'note', headerName: '비고', flex: 1 }]}
-                      defaultColDef={defaultColDef} />
-                  </div>
-                  <div style={{ marginTop: 12, fontSize: '12px', fontWeight: 700, color: '#1e293b', marginBottom: 6 }}>비고</div>
-                  <textarea className="form-control form-control-sm" style={{ height: 80, resize: 'none' }} />
-                  <div style={{ marginTop: 12 }}>
-                    <div style={{ fontSize: '12px', fontWeight: 700, marginBottom: 6, color: '#1e293b' }}>제품사진</div>
-                    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                      <select className="form-select form-select-sm" style={{ width: 200 }}>
-                        <option>02 - 아이보리</option>
-                      </select>
-                      <span style={{ fontSize: '11px', color: '#6b7280' }}>2.53 MB</span>
-                      <span style={{ fontSize: '11px', color: '#16a34a' }}>✓</span>
-                      <button className="btn btn-sm" style={{ background: '#0891b2', color: '#fff', border: 'none', fontSize: '11px' }}>확인</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* 원부자재레퍼 탭 */}
-            {activeTab === 3 && (
-              <div style={{ padding: 0, height: '100%' }}>
-                <div className="ag-theme-alpine" style={{ height: '100%', width: '100%' }}>
-                  <AgGridReact rowData={selStyle ? FABRIC_ROWS : []} columnDefs={fabricCols} defaultColDef={defaultColDef} />
-                </div>
-              </div>
-            )}
-
-            {/* SIZE.SPEC 탭 */}
-            {activeTab === 4 && (
-              <div style={{ display: 'flex', height: '100%', gap: 0 }}>
-                <div style={{ width: 160, borderRight: '1px solid #e2e8f0', overflowY: 'auto' }}>
-                  <div style={{ padding: '8px 10px', fontSize: '11px', fontWeight: 700, borderBottom: '1px solid #e2e8f0', background: '#f8fafc', color: '#374151' }}>규격 목록</div>
-                  <div style={{ padding: '6px 10px', display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontWeight: 700, background: '#f0f9ff', borderBottom: '1px solid #e2e8f0', color: '#374151' }}>
-                    <span>대표주어</span><span>규격</span>
-                  </div>
-                  {SIZES.map(s => (
-                    <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 10px', borderBottom: '1px solid #f1f5f9' }}>
-                      <input type="checkbox" checked={!!checkedSizes[`s${s}`]} onChange={e => setCheckedSizes(c => ({ ...c, [`s${s}`]: e.target.checked }))} />
-                      <span style={{ fontSize: '12px', color: '#374151' }}>{s}</span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ flex: 1, overflow: 'auto', padding: 0 }}>
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6, padding: '6px 10px', borderBottom: '1px solid #e2e8f0', background: '#f8fafc' }}>
-                    <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>EXCEL 양식</button>
-                    <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>EXCEL 업로드</button>
-                    <button className="btn-pdm-action" style={{ fontSize: '11px', padding: '2px 8px' }}>행삽제</button>
-                  </div>
-                  <div className="ag-theme-alpine" style={{ height: 'calc(100% - 38px)' }}>
-                    <AgGridReact rowData={selStyle ? sizeRows : []} columnDefs={sizeCols} defaultColDef={defaultColDef} />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* 추가정보 탭 */}
-            {activeTab === 5 && (
-              <div style={{ padding: 14, height: '100%', overflowY: 'auto' }}>
-                <div style={{ color: '#9ca3af', fontSize: '12px', textAlign: 'center', marginTop: 40 }}>추가 정보가 없습니다.</div>
-              </div>
-            )}
-          </div>
-        </div>
       </div>
-    </div>
   );
 }
