@@ -162,7 +162,7 @@ export default function WorkOrder() {
 
       <div className="pdm-content">
         {/* 좌: 스타일 목록 */}
-        <div className="pdm-panel" style={{ width: '200px' }}>
+        <div className="pdm-panel" style={{ width: '280px' }}>
           <div className="pdm-panel-header">스타일 목록</div>
           <div className="pdm-panel-body">
             <div className="ag-theme-alpine" style={{ height: '100%', width: '100%' }}>

@@ -124,7 +124,7 @@ export default function SewingSpec() {
 
       <div className="pdm-content" style={{ gap: 0 }}>
         {/* 스타일 목록 */}
-        <div className="pdm-panel" style={{ width: '220px' }}>
+        <div className="pdm-panel" style={{ width: '280px' }}>
           <div className="pdm-panel-header">스타일 목록</div>
           <div className="pdm-panel-body">
             <div className="ag-theme-alpine" style={{ height: '100%', width: '100%' }}>
@@ -141,7 +141,7 @@ export default function SewingSpec() {
         <div className="pdm-divider" />
 
         {/* 봉제사양서 목록 */}
-        <div className="pdm-panel" style={{ width: '220px' }}>
+        <div className="pdm-panel" style={{ width: '260px' }}>
           <div className="pdm-panel-header">봉제사양서 목록</div>
           <div className="pdm-panel-body">
             <div className="ag-theme-alpine" style={{ height: '100%', width: '100%' }}>
