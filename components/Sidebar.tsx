@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronRight, Menu as MenuIcon, Settings, Code, LayoutGrid, Users, ShieldCheck, FileSpreadsheet, Printer, Timer, Database, Key, Server, Building2, Layers, Shirt, Copy, Scissors, FileText, ClipboardList } from 'lucide-react';
+import { LucideIcon, ChevronRight, Menu as MenuIcon, Settings, Code, LayoutGrid, Users, ShieldCheck, FileSpreadsheet, Printer, Timer, Database, Key, Server, Building2, Layers, Shirt, Copy, Scissors, FileText, ClipboardList } from 'lucide-react';
 import { useTabContext } from '@/contexts/TabContext';
 
 interface NavNode {
   id: string;
   label: string;
   path?: string;
-  icon?: React.ComponentType<{ size?: number; className?: string }>;
+  icon?: LucideIcon;
   children?: NavNode[];
 }
 
@@ -161,86 +161,86 @@ export default function Sidebar() {
       // 자식이 있으면 폴더(그룹)
       if (node.children && node.children.length > 0) {
         return (
-          <React.Fragment key={node.id}>
-            <div
-              className={`nav-group ${indent} ${isOpen ? 'open' : ''}`}
-              onClick={() => toggleNode(node.id)}
-              title={collapsed ? node.label : undefined}
-            >
-              {Icon && <Icon size={14} />}
-              <span className="link-text">{node.label}</span>
-              <ChevronRight size={12} className="chevron" />
-            </div>
-            {isOpen && !collapsed && renderNodes(node.children, depth + 1)}
-          </React.Fragment>
+            <React.Fragment key={node.id}>
+              <div
+                  className={`nav-group ${indent} ${isOpen ? 'open' : ''}`}
+                  onClick={() => toggleNode(node.id)}
+                  title={collapsed ? node.label : undefined}
+              >
+                {Icon && <Icon size={14} />}
+                <span className="link-text">{node.label}</span>
+                <ChevronRight size={12} className="chevron" />
+              </div>
+              {isOpen && !collapsed && renderNodes(node.children, depth + 1)}
+            </React.Fragment>
         );
       }
 
       // 잎 노드
       return (
-        <button
-          key={node.id}
-          className={`nav-leaf ${indent} ${isActive(node.path) ? 'active' : ''}`}
-          onClick={() => node.path && openTab(node.path, node.label)}
-          disabled={!node.path}
-          title={collapsed ? node.label : undefined}
-          style={{ opacity: node.path ? 1 : 0.45 }}
-        >
-          {Icon && <Icon size={14} />}
-          <span className="link-text">{node.label}</span>
-        </button>
+          <button
+              key={node.id}
+              className={`nav-leaf ${indent} ${isActive(node.path) ? 'active' : ''}`}
+              onClick={() => node.path && openTab(node.path, node.label)}
+              disabled={!node.path}
+              title={collapsed ? node.label : undefined}
+              style={{ opacity: node.path ? 1 : 0.45 }}
+          >
+            {Icon && <Icon size={14} />}
+            <span className="link-text">{node.label}</span>
+          </button>
       );
     });
   }
 
   return (
-    <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
-      {/* 로고 */}
-      <div className="sidebar-header">
-        {!collapsed && (
-          <span className="sidebar-logo-text">
+      <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
+        {/* 로고 */}
+        <div className="sidebar-header">
+          {!collapsed && (
+              <span className="sidebar-logo-text">
             Amer Sports Korea <span>PDM</span>
           </span>
-        )}
-        <button className="sidebar-toggle-btn" onClick={() => setCollapsed(!collapsed)}>
-          <MenuIcon size={18} />
-        </button>
-      </div>
+          )}
+          <button className="sidebar-toggle-btn" onClick={() => setCollapsed(!collapsed)}>
+            <MenuIcon size={18} />
+          </button>
+        </div>
 
-      {/* 트리 메뉴 */}
-      <div className="sidebar-scroll">
-        {NAV_TREE.map(section => {
-          const isOpen = openMap[section.id] ?? false;
-          const Icon = section.icon;
-          return (
-            <React.Fragment key={section.id}>
-              <div
-                className={`nav-section-header ${isOpen ? 'open' : ''}`}
-                onClick={() => toggleNode(section.id)}
-                title={collapsed ? section.label : undefined}
-              >
-                {Icon && <Icon size={13} />}
-                <span className="link-text">{section.label}</span>
-                {!collapsed && (
-                  <ChevronRight
-                    size={11}
-                    style={{
-                      marginLeft: 'auto',
-                      transform: isOpen ? 'rotate(90deg)' : 'none',
-                      transition: 'transform 0.2s',
-                    }}
-                  />
-                )}
-              </div>
-              {isOpen && !collapsed && section.children && renderNodes(section.children, 1)}
-            </React.Fragment>
-          );
-        })}
-      </div>
+        {/* 트리 메뉴 */}
+        <div className="sidebar-scroll">
+          {NAV_TREE.map(section => {
+            const isOpen = openMap[section.id] ?? false;
+            const Icon = section.icon;
+            return (
+                <React.Fragment key={section.id}>
+                  <div
+                      className={`nav-section-header ${isOpen ? 'open' : ''}`}
+                      onClick={() => toggleNode(section.id)}
+                      title={collapsed ? section.label : undefined}
+                  >
+                    {Icon && <Icon size={13} />}
+                    <span className="link-text">{section.label}</span>
+                    {!collapsed && (
+                        <ChevronRight
+                            size={11}
+                            style={{
+                              marginLeft: 'auto',
+                              transform: isOpen ? 'rotate(90deg)' : 'none',
+                              transition: 'transform 0.2s',
+                            }}
+                        />
+                    )}
+                  </div>
+                  {isOpen && !collapsed && section.children && renderNodes(section.children, 1)}
+                </React.Fragment>
+            );
+          })}
+        </div>
 
-      <div className="sidebar-footer">
-        © AMER SPORTS KOREA CO.,LTD ALL RIGHTS RESERVED.
-      </div>
-    </aside>
+        <div className="sidebar-footer">
+          © AMER SPORTS KOREA CO.,LTD ALL RIGHTS RESERVED.
+        </div>
+      </aside>
   );
 }
