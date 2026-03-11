@@ -89,7 +89,7 @@ export default function DeployHistory() {
 
   const styleCols = useMemo<ColDef[]>(() => [
     { field: 'styleCode', headerName: '스타일코드', flex: 1 },
-    { field: 'brand',     headerName: '브랜드',     width: 80 },
+    { field: 'brand',     headerName: '브랜드',     width: 90 },
     { field: 'season',    headerName: '시즌',       width: 70 },
   ], []);
 
@@ -156,7 +156,7 @@ export default function DeployHistory() {
 
       <div style={{ flex: 1, display: 'flex', minHeight: 0, gap: 0 }}>
         {/* 좌측: 스타일 목록 */}
-        <div style={{ width: 240, borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', padding: '6px 8px' }}>
+        <div style={{ width: 300, borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', padding: '6px 8px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
             <Star size={12} color="#1a5cb8" />
             <span style={{ fontSize: 12, fontWeight: 600, color: '#1a5cb8' }}>스타일 목록</span>
@@ -175,7 +175,7 @@ export default function DeployHistory() {
         </div>
 
         {/* 가운데: 배포이력 */}
-        <div style={{ width: 420, borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', padding: '6px 8px' }}>
+        <div style={{ width: 620, borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', padding: '6px 8px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
             <Star size={12} color="#1a5cb8" />
             <span style={{ fontSize: 12, fontWeight: 600, color: '#1a5cb8' }}>배포이력</span>

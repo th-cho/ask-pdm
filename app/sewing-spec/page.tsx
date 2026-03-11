@@ -11,20 +11,20 @@ interface StyleRow   { id: number; styleCode: string; styleName: string; }
 interface SectionRow { id: number; category: string; no: number; }
 
 const MOCK_STYLES: StyleRow[] = [
-  { id: 1,  styleCode: 'MACFF451421', styleName: 'MACFF451421' },
-  { id: 2,  styleCode: 'MACFF451431', styleName: 'MACFF451431' },
-  { id: 3,  styleCode: 'MACFF451441', styleName: 'MACFF451441' },
-  { id: 4,  styleCode: 'MACFF451451', styleName: 'MACFF451451' },
-  { id: 5,  styleCode: 'MACFF451111', styleName: 'MACFF451111' },
-  { id: 6,  styleCode: 'MACTL451121', styleName: 'MACTL451121' },
-  { id: 7,  styleCode: 'MACTL451221', styleName: 'MACTL451221' },
-  { id: 8,  styleCode: 'MACTL451251', styleName: 'MACTL451251' },
-  { id: 9,  styleCode: 'MACTL451361', styleName: 'MACTL451361' },
-  { id: 10, styleCode: 'MAEFF451411', styleName: 'MAEFF451411' },
-  { id: 11, styleCode: 'MAEFF7416',   styleName: 'MAEFF7416' },
-  { id: 12, styleCode: 'MANGL452431', styleName: 'MANGL452431' },
-  { id: 13, styleCode: 'MANE851111',  styleName: 'MANE851111' },
-  { id: 14, styleCode: 'MANFF452111', styleName: 'MANFF452111' },
+  { id: 1,  styleCode: 'A251010SFJ02', styleName: 'A251010SFJ02' },
+  { id: 2,  styleCode: 'A251010SFJ03', styleName: 'A251010SFJ03' },
+  { id: 3,  styleCode: 'A251010SFJ04', styleName: 'A251010SFJ04' },
+  { id: 4,  styleCode: 'A251010SFJ05', styleName: 'A251010SFJ05' },
+  { id: 5,  styleCode: 'A251010SFJ06', styleName: 'A251010SFJ06' },
+  { id: 6,  styleCode: 'A251010STL01', styleName: 'A251010STL01' },
+  { id: 7,  styleCode: 'A251010STL02', styleName: 'A251010STL02' },
+  { id: 8,  styleCode: 'A251010STL03', styleName: 'A251010STL03' },
+  { id: 9,  styleCode: 'A251010STL04', styleName: 'A251010STL04' },
+  { id: 10, styleCode: 'A251010SFP01', styleName: 'A251010SFP01' },
+  { id: 11, styleCode: 'A251010SFP02', styleName: 'A251010SFP02' },
+  { id: 12, styleCode: 'A252010SJK01', styleName: 'A252010SJK01' },
+  { id: 13, styleCode: 'A251010SHT01', styleName: 'A251010SHT01' },
+  { id: 14, styleCode: 'A252010SFJ07', styleName: 'A252010SFJ07' },
 ];
 
 const MOCK_SECTIONS: SectionRow[] = [

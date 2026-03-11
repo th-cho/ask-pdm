@@ -21,7 +21,7 @@ const QUICK_LINKS = [
 
 const UPCOMING = [
   { label: '의뢰관리 (RQ)', desc: '상품사입의뢰, 원단구매의뢰, 결재라인관리, 알림설정',     phase: 6 },
-  { label: '현황관리 (CS)', desc: '배포이력현황, 요적현황, 원부자재변경현황',               phase: 7 },
+  { label: '현황관리 (CS)', desc: '배포이력현황, 요척현황, 원부자재변경현황',               phase: 7 },
 ];
 
 export default function Home() {

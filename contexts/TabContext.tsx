@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useCallback, ReactNode } fr
 
 export interface Tab {
   id: string;     // path (예: '/attendance-regular')
-  title: string;  // 표시 이름 (예: '정규직 근태관리')
+  title: string;  // 표시 이름 (예: '관리')
   path: string;   // 실제 라우트 경로
 }
 

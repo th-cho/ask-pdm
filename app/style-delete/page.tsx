@@ -58,7 +58,7 @@ export default function StyleDelete() {
     { field: 'styleCode',    headerName: '스타일코드',    flex: 1 },
     { field: 'styleName',    headerName: '스타일명',      flex: 1 },
     { field: 'repStyleCode', headerName: '대표스타일코드', flex: 1 },
-    { field: 'brandZone',    headerName: '브랜드존',      width: 100 },
+    { field: 'brandZone',    headerName: '브랜드',      width: 100 },
   ], []);
 
   const defaultColDef = useMemo(() => ({ resizable: true, sortable: true }), []);

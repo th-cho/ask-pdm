@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const MOCK_STYLES = [
-  { id: 1, styleCode: 'VOBNS4S2121', styleName: 'VOBNS4S2121', repStyleCode: 'VOBNS4S2121', brandZone: 'OL' },
-  { id: 2, styleCode: 'VVBEB4S2161', styleName: 'VVBEB4S2161', repStyleCode: 'VVBEB4S2161', brandZone: 'OL' },
-  { id: 3, styleCode: 'VVBMJ4S3291', styleName: 'VVBMJ4S3291', repStyleCode: 'VVBMJ4S3291', brandZone: 'OL' },
-  { id: 4, styleCode: 'VVCOA4S2221', styleName: 'VVCOA4S2221', repStyleCode: 'VVCOA4S2221', brandZone: 'OL' },
-  { id: 5, styleCode: 'VVCCL451371', styleName: 'VVCCL451371', repStyleCode: 'VVCCL451371', brandZone: 'OL' },
-  { id: 6, styleCode: 'VVCCL451381', styleName: 'VVCCL451381', repStyleCode: 'VVCCL451381', brandZone: 'OL' },
+  { id: 1, styleCode: 'S25S010HJK03', styleName: 'S25S010HJK03', repStyleCode: 'S25S010HJK03', brandZone: 'OL' },
+  { id: 2, styleCode: 'W25S020TJK01', styleName: 'W25S020TJK01', repStyleCode: 'W25S020TJK01', brandZone: 'OL' },
+  { id: 3, styleCode: 'W25S020TJK02', styleName: 'W25S020TJK02', repStyleCode: 'W25S020TJK02', brandZone: 'OL' },
+  { id: 4, styleCode: 'W25S020TJA01', styleName: 'W25S020TJA01', repStyleCode: 'W25S020TJA01', brandZone: 'OL' },
+  { id: 5, styleCode: 'W251010TJK01', styleName: 'W251010TJK01', repStyleCode: 'W251010TJK01', brandZone: 'OL' },
+  { id: 6, styleCode: 'W251010TJK02', styleName: 'W251010TJK02', repStyleCode: 'W251010TJK02', brandZone: 'OL' },
 ];
 
 export async function GET(req: NextRequest) {

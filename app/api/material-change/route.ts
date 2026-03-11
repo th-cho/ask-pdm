@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const MOCK_STYLES = [
-  { id: 1,  styleCode: 'VOBAL451111', brand: 'VOLCOM', season: '24SS' },
-  { id: 2,  styleCode: 'VVBEB452241', brand: 'VOLCOM', season: '24SS' },
-  { id: 3,  styleCode: 'VOBBC451151', brand: 'VOLCOM', season: '24SS' },
-  { id: 4,  styleCode: 'VOBBC452216', brand: 'VOLCOM', season: '24FW' },
-  { id: 5,  styleCode: 'VOBBL451111', brand: 'VOLCOM', season: '24FW' },
-  { id: 6,  styleCode: 'VOBJN452131', brand: 'VOLCOM', season: '24SS' },
+  { id: 1,  styleCode: 'S251010HJK01', brand: 'SALOMON', season: '25SS' },
+  { id: 2,  styleCode: 'S252020HPT01', brand: 'SALOMON', season: '25SS' },
+  { id: 3,  styleCode: 'S251010HJA01', brand: 'SALOMON', season: '25SS' },
+  { id: 4,  styleCode: 'S252010HJA02', brand: 'SALOMON', season: '25FW' },
+  { id: 5,  styleCode: 'S251010HPT01', brand: 'SALOMON', season: '25FW' },
+  { id: 6,  styleCode: 'S252010HJK02', brand: 'SALOMON', season: '25SS' },
 ];
 
 export async function GET(req: NextRequest) {

@@ -14,63 +14,6 @@ interface NavNode {
 
 const NAV_TREE: NavNode[] = [
   {
-    id: 'system',
-    label: '시스템',
-    icon: Settings,
-    children: [
-      {
-        id: 'system_org',
-        label: '조직정보관리',
-        icon: Building2,
-        children: [
-          { id: 'user', label: '사용자관리', path: '/user', icon: Users },
-          { id: 'program', label: '프로그램정보', path: '/program', icon: LayoutGrid },
-        ],
-      },
-      {
-        id: 'system_mgmt',
-        label: '시스템관리',
-        icon: Server,
-        children: [
-          { id: 'company', label: '환경설정', path: '/company', icon: Settings },
-          { id: 'common-code-master', label: '공통코드마스터', path: '/common-code', icon: Database },
-          { id: 'common-code', label: '공통코드', path: '/common-code', icon: Code },
-          { id: 'work-division', label: '업무구분', icon: Layers },
-          {
-            id: 'api',
-            label: 'API',
-            icon: Key,
-            children: [
-              { id: 'api-auth', label: 'API 인증관리', icon: Key },
-              { id: 'api-manage', label: 'API 관리', icon: Server },
-            ],
-          },
-          { id: 'excel-template', label: '엑셀양식관리', path: '/excel-template', icon: FileSpreadsheet },
-          {
-            id: 'output',
-            label: '출력물',
-            icon: Printer,
-            children: [
-              { id: 'output-item', label: '출력물등록', path: '/output-item', icon: Printer },
-              { id: 'output-manage', label: '출력물관리', icon: Printer },
-            ],
-          },
-          {
-            id: 'batch',
-            label: '배치관리',
-            icon: Timer,
-            children: [
-              { id: 'batch-manage', label: '배치관리', path: '/batch-manage', icon: Timer },
-              { id: 'batch-log', label: '배치로그', icon: Timer },
-            ],
-          },
-        ],
-      },
-      { id: 'menu', label: '메뉴관리', path: '/menu', icon: MenuIcon },
-      { id: 'permission', label: '권한관리', path: '/permission', icon: ShieldCheck },
-    ],
-  },
-  {
     id: 'common',
     label: '공통관리',
     icon: Layers,
@@ -158,7 +101,7 @@ const NAV_TREE: NavNode[] = [
         icon: FileText,
         children: [
           { id: 'deploy-history',  label: '배포이력현황',     path: '/deploy-history',  icon: History    },
-          { id: 'material-status', label: '요적현황',         path: '/material-status', icon: BarChart2  },
+          { id: 'material-status', label: '요척현황',         path: '/material-status', icon: BarChart2  },
           { id: 'material-change', label: '원부자재변경현황', path: '/material-change', icon: RefreshCw  },
         ],
       },
@@ -168,6 +111,63 @@ const NAV_TREE: NavNode[] = [
         icon: Ruler,
         children: [
           { id: 'size-convert', label: '사이즈단위환산(파일)', path: '/size-convert', icon: Ruler },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'system',
+    label: '시스템',
+    icon: Settings,
+    children: [
+      {
+        id: 'system_mgmt',
+        label: '시스템관리',
+        icon: Server,
+        children: [
+          { id: 'company', label: '환경설정', path: '/company', icon: Settings },
+          { id: 'common-code-master', label: '공통코드마스터', path: '/common-code', icon: Database },
+          { id: 'common-code', label: '공통코드', path: '/common-code', icon: Code },
+          { id: 'work-division', label: '업무구분', icon: Layers },
+          {
+            id: 'api',
+            label: 'API',
+            icon: Key,
+            children: [
+              { id: 'api-auth', label: 'API 인증관리', icon: Key },
+              { id: 'api-manage', label: 'API 관리', icon: Server },
+            ],
+          },
+          { id: 'excel-template', label: '엑셀양식관리', path: '/excel-template', icon: FileSpreadsheet },
+          {
+            id: 'output',
+            label: '출력물',
+            icon: Printer,
+            children: [
+              { id: 'output-item', label: '출력물등록', path: '/output-item', icon: Printer },
+              { id: 'output-manage', label: '출력물관리', icon: Printer },
+            ],
+          },
+          {
+            id: 'batch',
+            label: '배치관리',
+            icon: Timer,
+            children: [
+              { id: 'batch-manage', label: '배치관리', path: '/batch-manage', icon: Timer },
+              { id: 'batch-log', label: '배치로그', icon: Timer },
+            ],
+          },
+        ],
+      },
+      { id: 'menu', label: '메뉴관리', path: '/menu', icon: MenuIcon },
+      { id: 'permission', label: '권한관리', path: '/permission', icon: ShieldCheck },
+      {
+        id: 'system_org',
+        label: '조직정보관리',
+        icon: Building2,
+        children: [
+          { id: 'user', label: '사용자관리', path: '/user', icon: Users },
+          { id: 'program', label: '프로그램정보', path: '/program', icon: LayoutGrid },
         ],
       },
     ],

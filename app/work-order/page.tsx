@@ -12,20 +12,20 @@ interface StyleRow { id: number; styleCode: string; styleName: string; }
 const TABS = ['기기정보', '디자인도면', '세탁봉사항', '원부자재레퍼', 'SIZE.SPEC', '추가정보'];
 
 const MOCK_STYLES: StyleRow[] = [
-  { id: 1,  styleCode: 'VOBAL451111', styleName: 'VOBAL451111' },
-  { id: 2,  styleCode: 'VVBEB452241', styleName: 'VVBEB452241' },
-  { id: 3,  styleCode: 'VOBBC451151', styleName: 'VOBBC451151' },
-  { id: 4,  styleCode: 'VOBBC452216', styleName: 'VOBBC452216' },
-  { id: 5,  styleCode: 'VOBBL451111', styleName: 'VOBBL451111' },
-  { id: 6,  styleCode: 'VOBBL451151', styleName: 'VOBBL451151' },
-  { id: 7,  styleCode: 'VOBBL451211', styleName: 'VOBBL451211' },
-  { id: 8,  styleCode: 'VOBBL4512SS', styleName: 'VOBBL4512SS' },
-  { id: 9,  styleCode: 'VOBJN452131', styleName: 'VOBJN452131' },
-  { id: 10, styleCode: 'VOBJN452141', styleName: 'VOBJN452141' },
-  { id: 11, styleCode: 'VOBJN452151', styleName: 'VOBJN452151' },
-  { id: 12, styleCode: 'VOBKD451121', styleName: 'VOBKD451121' },
-  { id: 13, styleCode: 'VOBN452121',  styleName: 'VOBN452121' },
-  { id: 14, styleCode: 'VOBKD451121', styleName: 'VOBKD451121' },
+  { id: 1,  styleCode: 'S251010HJK01', styleName: 'S251010HJK01' },
+  { id: 2,  styleCode: 'S252020HPT01', styleName: 'S252020HPT01' },
+  { id: 3,  styleCode: 'S251010HJA01', styleName: 'S251010HJA01' },
+  { id: 4,  styleCode: 'S252010HJA02', styleName: 'S252010HJA02' },
+  { id: 5,  styleCode: 'S251010HPT01', styleName: 'S251010HPT01' },
+  { id: 6,  styleCode: 'S251010HPT02', styleName: 'S251010HPT02' },
+  { id: 7,  styleCode: 'S251010HPH01', styleName: 'S251010HPH01' },
+  { id: 8,  styleCode: 'S252010HPH02', styleName: 'S252010HPH02' },
+  { id: 9,  styleCode: 'S252010HJK02', styleName: 'S252010HJK02' },
+  { id: 10, styleCode: 'S252010HJK03', styleName: 'S252010HJK03' },
+  { id: 11, styleCode: 'S252010HJK04', styleName: 'S252010HJK04' },
+  { id: 12, styleCode: 'S251010HPT03', styleName: 'S251010HPT03' },
+  { id: 13, styleCode: 'S252010HVE01', styleName: 'S252010HVE01' },
+  { id: 14, styleCode: 'S25S010HVE01', styleName: 'S25S010HVE01' },
 ];
 
 const SIZE_ITEMS = [
@@ -286,7 +286,7 @@ export default function WorkOrder() {
                       <input className="form-control form-control-sm" style={{ flex: 1 }} value={selStyle?.styleName ?? ''} readOnly />
                     </div>
                     <div className="pdm-form-row" style={{ marginTop: 8 }}>
-                      <span className="pdm-form-label">브랜드존</span>
+                      <span className="pdm-form-label">브랜드</span>
                       <input className="form-control form-control-sm" style={{ width: 80 }} value={filter.zone} readOnly />
                       <span className="pdm-form-label" style={{ marginLeft: 16 }}>년도</span>
                       <input className="form-control form-control-sm" style={{ width: 60 }} value={filter.year} readOnly />
