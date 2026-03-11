@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "아머스포츠코리아 PDM 시스템",
