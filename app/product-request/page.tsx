@@ -145,8 +145,6 @@ export default function ProductRequest() {
         <select value={filter.item} onChange={e => ff('item', e.target.value)}>
           <option value="">전체</option><option value="DJ">DOWN JACKET</option><option value="DV">DOWN VEST</option><option value="PJ">PADDED JACKET</option><option value="PV">PADDED VEST</option><option value="VE">VEST</option><option value="JK">JACKET</option><option value="JA">JACKET ANORAK</option><option value="PT">PANTS(WOVEN)</option><option value="PH">PANTS HALF</option><option value="FJ">FLEECE JACKET</option><option value="FA">FLEECE ANORAK</option><option value="FP">FLEECE PANTS</option><option value="HT">HEAVY TOP</option><option value="HD">HOODED</option><option value="TL">T-LONG</option><option value="TS">T-SHORT</option><option value="TW">T-WOVEN</option><option value="SL">SLEEVELESS</option><option value="LL">LEGGINGS-LONG</option><option value="LS">LEGGINGS-SHORTS</option><option value="SK">SKIRT</option><option value="OP">ONEPIECE</option><option value="SJ">SKI JACKET</option><option value="SP">SKI PANTS</option><option value="SH">SHIRTS</option>
         </select>
-        <label>두자리코드</label>
-        <input style={{ width: 50 }} value={filter.itemCode} onChange={e => ff('itemCode', e.target.value)} placeholder="00" />
         <label>의뢰번호</label>
         <input style={{ width: 130 }} value={filter.reqNo} onChange={e => ff('reqNo', e.target.value)} placeholder="RQB-2024-" />
         <label>상태</label>
