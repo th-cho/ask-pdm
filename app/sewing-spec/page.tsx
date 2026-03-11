@@ -216,7 +216,7 @@ export default function SewingSpec() {
     setSelSection(null);
   }, []);
 
-  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setFilter(f => ({ ...f, [k]: e.target.value }));
 
   const styleCols = useMemo<ColDef[]>(() => [

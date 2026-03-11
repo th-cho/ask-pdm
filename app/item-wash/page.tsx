@@ -39,7 +39,7 @@ export default function ItemWash() {
   }, [washList]);
 
   const handleInit = useCallback(() => { setFilter(FILTER_INIT); setItems([]); setWashList([]); setSelItem(null); }, []);
-  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setFilter(f => ({ ...f, [k]: e.target.value }));
 
   const itemCols = useMemo<ColDef[]>(() => [

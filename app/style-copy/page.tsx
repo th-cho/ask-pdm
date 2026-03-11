@@ -86,7 +86,7 @@ export default function StyleCopy() {
   }, [selStyle]);
 
   const handleInit = useCallback(() => { setFilter(FILTER_INIT); setRowData([]); setSelStyle(null); setTree(COPY_TREE); }, []);
-  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setFilter(f => ({ ...f, [k]: e.target.value }));
 
   const colDefs = useMemo<ColDef[]>(() => [

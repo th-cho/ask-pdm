@@ -47,7 +47,7 @@ export default function AccessorySetting() {
   const handleDelete = useCallback(async () => { if (!selSeason) { alert('시즌을 선택하세요.'); return; } alert('삭제되었습니다.'); }, [selSeason]);
   const handleCopy   = useCallback(() => alert('복사되었습니다.'), []);
   const handleInit   = useCallback(() => { setFilter(FILTER_INIT); setItems([]); setSeasons([]); setAccessories([]); }, []);
-  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setFilter(f => ({ ...f, [k]: e.target.value }));
 
   const itemCols = useMemo<ColDef[]>(() => [

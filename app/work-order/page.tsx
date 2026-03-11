@@ -50,7 +50,7 @@ const LABEL_ROWS = [
   { no: 3, labelName: '행텍', labelQty: 1, note: '' },
 ];
 
-const FILTER_INIT = { brand: '', year: '24', season: '', importType: '', mktType: '', class: '', category: '', item: '', itemCode: '', style: '' };
+const FILTER_INIT = { brand: '', year: '24', season: '', importType: '', mktType: '', class: '', category: '', item: '', itemCode: '', style: '', zone: '' };
 
 function MockJacketFront({ styleCode }: { styleCode: string }) {
   return (
@@ -134,7 +134,7 @@ export default function WorkOrder() {
   const handlePrint  = useCallback(() => alert('출력합니다.'), []);
   const handleInit   = useCallback(() => { setFilter(FILTER_INIT); setSelStyle(null); }, []);
 
-  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setFilter(f => ({ ...f, [k]: e.target.value }));
 
   const styleCols = useMemo<ColDef[]>(() => [

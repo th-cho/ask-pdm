@@ -50,6 +50,9 @@ export default function StyleDelete() {
     setRowData([]);
   }, []);
 
+  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    setFilter(f => ({ ...f, [k]: e.target.value }));
+
   const colDefs = useMemo<ColDef[]>(() => [
     { field: '_checked', headerName: '', width: 50, checkboxSelection: true, headerCheckboxSelection: true },
     { field: 'styleCode',    headerName: '스타일코드',    flex: 1 },
@@ -59,9 +62,6 @@ export default function StyleDelete() {
   ], []);
 
   const defaultColDef = useMemo(() => ({ resizable: true, sortable: true }), []);
-
-  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setFilter(f => ({ ...f, [k]: e.target.value }));
 
   return (
     <div className="pdm-page">

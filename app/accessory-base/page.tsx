@@ -53,7 +53,7 @@ export default function AccessoryBase() {
   }, [selected, handleSearch]);
   const handleInit   = useCallback(() => { setFilter(FILTER_INIT); setRowData([]); setSelected(null); }, []);
 
-  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement>) =>
+  const setF = (k: keyof typeof FILTER_INIT) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setFilter(f => ({ ...f, [k]: e.target.value }));
 
   const colDefs = useMemo<ColDef[]>(() => [
