@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "아머스포츠코리아 PDM 시스템",
-  description: "Amer Korea Attendance Management System",
+  description: "Amer Korea Sports PDM System",
 };
 
 export default function RootLayout({
