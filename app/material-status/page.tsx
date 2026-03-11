@@ -12,7 +12,7 @@ interface RawRow    { no: number; code: string; name: string; color: string; con
 interface AccRow    { no: number; code: string; name: string; color: string; spec: string; reqQty: number; unit: string; supplier: string; note: string; }
 interface FinishRow { no: number; code: string; name: string; color: string; spec: string; reqQty: number; unit: string; supplier: string; note: string; }
 
-const FILTER_INIT = { zone: 'WM', brand: '', year: '24', season: '', style: '' };
+const FILTER_INIT = { brand: '', year: '24', season: '', importType: '', mktType: '', class: '', category: '', item: '', itemCode: '', style: '' };
 
 const MOCK_STYLES: StyleRow[] = [
   { id: 1,  styleCode: 'VOBAL451111', styleName: 'VOBAL451111', brand: 'VOLCOM', season: '24SS' },
@@ -136,22 +136,40 @@ export default function MaterialStatus() {
 
       {/* 필터 */}
       <div className="pdm-filter-bar">
-        <label>존</label>
-        <select value={filter.zone} onChange={e => ff('zone', e.target.value)}>
-          <option value="WM">WM</option><option value="OL">OL</option>
-        </select>
         <label>브랜드</label>
         <select value={filter.brand} onChange={e => ff('brand', e.target.value)}>
-          <option value="">전체</option><option value="VOLCOM">VOLCOM</option>
+          <option value="">전체</option><option value="S">SALOMON</option><option value="W">WILSON</option><option value="A">ATOMIC</option>
         </select>
         <label>년도</label>
-        <input style={{ width: 50 }} value={filter.year} onChange={e => ff('year', e.target.value)} />
+        <input style={{ width: 45 }} value={filter.year} onChange={e => ff('year', e.target.value)} />
         <label>시즌</label>
         <select value={filter.season} onChange={e => ff('season', e.target.value)}>
-          <option value="">전체</option><option value="SS">SS</option><option value="FW">FW</option>
+          <option value="">전체</option><option value="1">Q1</option><option value="2">Q2</option><option value="3">Q3</option><option value="4">Q4</option><option value="S">SS</option><option value="F">FW</option><option value="0">NON</option>
         </select>
+        <label>수입구분</label>
+        <select value={filter.importType} onChange={e => ff('importType', e.target.value)}>
+          <option value="">전체</option><option value="0">국내</option><option value="1">수입</option>
+        </select>
+        <label>협찬/정산</label>
+        <select value={filter.mktType} onChange={e => ff('mktType', e.target.value)}>
+          <option value="">전체</option><option value="0">정상판매</option><option value="1">마케팅샘플</option><option value="2">후원</option><option value="3">협찬</option><option value="4">홈쇼핑(남)</option><option value="5">홈쇼핑(여)</option><option value="6">홈쇼핑(유)</option><option value="7">수출</option>
+        </select>
+        <label>클래스</label>
+        <select value={filter.class} onChange={e => ff('class', e.target.value)}>
+          <option value="">전체</option><option value="01">의류남성</option><option value="02">의류여성</option><option value="03">의류유니</option><option value="07">신발남성</option><option value="08">신발여성</option><option value="09">신발유니</option><option value="0">NO GEN</option><option value="J">주니어</option>
+        </select>
+        <label>카테고리</label>
+        <select value={filter.category} onChange={e => ff('category', e.target.value)}>
+          <option value="">전체</option><option value="H">하이킹</option><option value="S">스포츠스타일</option><option value="W">윈터스포츠</option><option value="R">러닝</option><option value="T">테니스</option><option value="G">골프</option><option value="K">바스켓볼</option><option value="B">베이스볼</option><option value="L">라이프스타일</option><option value="C">축구</option><option value="N">트레이닝</option>
+        </select>
+        <label>아이템</label>
+        <select value={filter.item} onChange={e => ff('item', e.target.value)}>
+          <option value="">전체</option><option value="DJ">DOWN JACKET</option><option value="DV">DOWN VEST</option><option value="PJ">PADDED JACKET</option><option value="PV">PADDED VEST</option><option value="VE">VEST</option><option value="JK">JACKET</option><option value="JA">JACKET ANORAK</option><option value="PT">PANTS(WOVEN)</option><option value="PH">PANTS HALF</option><option value="FJ">FLEECE JACKET</option><option value="FA">FLEECE ANORAK</option><option value="FP">FLEECE PANTS</option><option value="HT">HEAVY TOP</option><option value="HD">HOODED</option><option value="TL">T-LONG</option><option value="TS">T-SHORT</option><option value="TW">T-WOVEN</option><option value="SL">SLEEVELESS</option><option value="LL">LEGGINGS-LONG</option><option value="LS">LEGGINGS-SHORTS</option><option value="SK">SKIRT</option><option value="OP">ONEPIECE</option><option value="SJ">SKI JACKET</option><option value="SP">SKI PANTS</option><option value="SH">SHIRTS</option>
+        </select>
+        <label>두자리코드</label>
+        <input style={{ width: 50 }} value={filter.itemCode} onChange={e => ff('itemCode', e.target.value)} placeholder="00" />
         <label>스타일</label>
-        <input style={{ width: 130 }} value={filter.style} onChange={e => ff('style', e.target.value)} />
+        <input style={{ width: 120 }} value={filter.style} onChange={e => ff('style', e.target.value)} />
         <button className="pdm-btn pdm-btn-primary" onClick={handleSearch} style={{ marginLeft: 4 }}><Search size={12} /> 조회</button>
       </div>
 
