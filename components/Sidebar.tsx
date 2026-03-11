@@ -174,10 +174,26 @@ const NAV_TREE: NavNode[] = [
   },
 ];
 
-// 기본 펼침 상태: 시스템 > 시스템관리 열림
+// 기본 펼침 상태: 모든 메뉴 펼침
 const DEFAULT_OPEN: Record<string, boolean> = {
   system: true,
+  system_org: true,
   system_mgmt: true,
+  api: true,
+  output: true,
+  batch: true,
+  common: true,
+  common_template: true,
+  common_style: true,
+  document: true,
+  doc_workorder: true,
+  doc_sewing: true,
+  request: true,
+  request_order: true,
+  request_approval: true,
+  status: true,
+  status_doc: true,
+  status_size: true,
 };
 
 export default function Sidebar() {
